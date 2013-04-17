@@ -2,22 +2,26 @@ var $ = require('jQuery');
 var _parserKeys = {};
 var _callback;
 
+var _getElementText = function(element) {
+	return $(element).text().replace(/\s\s\s*/g, '');
+};
 
 var _findElements = function(node) {
 	var data = {};
 	for (var k in _parserKeys.elements) {
 		var elementKey = _parserKeys.elements[k];
 
-		var elements = $(node).find(elementKey);
 		var text;
-		if (elements.length > 1) {
+		var elements;
+		if (elementKey instanceof Array) {
+			elements = $(node).find(elementKey[0]);
 			text = [];
 			for (var i = 0; i < elements.length; i++) {
-				text.push($(elements[i]).text().replace(/\s\s\s*/g, ''));
+				text.push(_getElementText(elements[i]));
 			}
-
 		} else {
-			text = $(elements[0]).text().replace(/\s\s\s*/g, '');
+			elements = $(node).find(elementKey);
+			text = _getElementText(elements[0]);
 		}
 		data[k] = text;
 	}

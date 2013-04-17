@@ -9,7 +9,8 @@ var fileWriter = require('./fileWriter');
 
 //Initilizing file appender
 var fileWriterOptions = {
-	path: '/Users/tusharmathur/Desktop/Output.json'
+	path: '/Users/tusharmathur/Desktop/dummy.json',
+	create: true
 };
 var writer = new fileWriter(fileWriterOptions);
 
@@ -21,7 +22,8 @@ var parserKey = {
 	elements: {
 		word: 'h2',
 		meaning: 'p',
-		menmonics: '.row-fluid > .span9'
+		menmonics: ['.row-fluid > .span9'],
+		synonyms: ['a']
 	}
 };
 

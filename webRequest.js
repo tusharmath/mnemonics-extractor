@@ -16,6 +16,7 @@ var _getResponse = function(resp) {
 	});
 
 	resp.on('end', function(chunk) {
+		console.log('Download completed: ', resp.req.path);
 		_options.callback(data);
 	});
 };
