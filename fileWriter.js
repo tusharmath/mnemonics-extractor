@@ -1,12 +1,12 @@
 var _options = {};
 var fs = require('fs');
-
+var _writeTimes = 1;
 var _onError = function(e) {
 	console.log("Error:", e);
 };
 
 var _writeToFile = function(data, create) {
-	console.log("Writing to file");
+	console.log("Writing to file ", _writeTimes++, " time");
 	data = JSON.stringify(data);
 
 	//file writing should be sync
@@ -20,11 +20,7 @@ var _writeToFile = function(data, create) {
 	if (err) {
 
 		_onError(err);
-	} else {
-		console.log("File updated");
 	}
-
-
 };
 
 var _fileWriter = function(options) {
