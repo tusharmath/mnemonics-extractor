@@ -1,4 +1,5 @@
 var http = require('http');
+var $ = require('jQuery');
 //http://www.mnemonicdictionary.com/wordlist/GREwordlist?page=787#
 
 
@@ -26,7 +27,7 @@ var makeRequest = function(page, callback) {
 
 		resp.on('end', function(chunk) {
 
-			callback(data);
+			callback($(data));
 
 		});
 	}).on("error", function(e) {
