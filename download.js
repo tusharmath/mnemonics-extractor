@@ -11,7 +11,9 @@ var responseParser = require('./responseParse');
 var parserKey = {
 	node: '#home-middle-content > .row-fluid',
 	elements: {
-		word: 'h2'
+		word: 'h2',
+		meaning:'p',
+		menmonics: '.row-fluid > .span9'
 	}
 };
 

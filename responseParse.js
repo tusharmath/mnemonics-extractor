@@ -5,8 +5,20 @@ var _parserKeys = {};
 var _findElements = function(node) {
 	var data = {};
 	for (var k in _parserKeys.elements) {
-		var el = _parserKeys.elements[k];
-		data[k] = $(node).find(el).text();
+		var elementKey = _parserKeys.elements[k];
+
+		var elements = $(node).find(elementKey);
+		var text;
+		if (elements.length > 1) {
+			text = [];
+			for (var i = 0; i < elements.length; i++) {
+				text.push($(elements[i]).text().replace(/\s\s\s*/g, ''));
+			}
+
+		} else {
+			text = $(elements[0]).text().replace(/\s\s\s*/g, '');
+		}
+		data[elementKey] = text;
 	}
 	return data;
 };
@@ -14,7 +26,7 @@ var _findElements = function(node) {
 var _parse = function(content) {
 	var elements = [];
 	var nodes = $(content).find(_parserKeys.node);
-	console.log(nodes.length, "nodes count");
+	//console.log(nodes.length, "nodes count");
 	for (var i = 0; i < nodes.length; i++) {
 		var node = nodes[i];
 		var e = _findElements(node);
