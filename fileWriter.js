@@ -1,20 +1,37 @@
 var _options = {};
 var fs = require('fs');
 var _writeTimes = 1;
+var _buffer = [];
+
 var _onError = function(e) {
 	if (e) console.log("Error:", e);
 };
 
-var _writeToFile = function(data) {
-	console.log("Writing to file ", _writeTimes++, " time");
-	data = JSON.stringify(data);
+var _writeComplete = function() {
+	if (_options.callback !== undefined) callback();
+};
 
-	//file writing should be sync
-	var err;
+var _writeToFile = function(jsData) {
+
+	var jsonData = JSON.stringify(jsData);
+
+
+
 	if (_options.create === true) {
-		fs.writeFile(_options.path, data, _onError);
+		fs.writeFile(_options.path, jsonData, _writeComplete);
 	} else {
-		fs.appendFile(_options.path, data, _onError);
+		fs.appendFile(_options.path, jsonData, _writeComplete);
+	}
+};
+
+var _write = function(jsData) {
+	jsData.forEach(function(d) {
+		_buffer.push(d);
+	});
+	_writeTimes++;
+
+	if (_writeTimes >= _options.chuckSize) {
+		_writeToFile(_buffer);
 	}
 };
 
@@ -22,7 +39,8 @@ var _fileWriter = function(options) {
 	_options = options;
 
 	return {
-		write: _writeToFile
+		write: _write
+
 	};
 };
 

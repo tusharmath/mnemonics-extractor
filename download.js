@@ -10,7 +10,8 @@ var fileWriter = require('./fileWriter');
 //Initilizing file appender
 var fileWriterOptions = {
 	path: '/Users/tusharmathur/LocalStaticSites/public/json/Output.json',
-	create: false
+	create: true,
+	chunkSize: 786
 };
 var writer = new fileWriter(fileWriterOptions);
 
@@ -42,6 +43,6 @@ var req = new webRequest(requestOptions);
 
 
 //Actual usage
-for (var i = 1; i < 787; i++) {
+for (var i = 1; i <= fileWriterOptions.chunkSize; i++) {
 	req.makeRequest(i);
 }
