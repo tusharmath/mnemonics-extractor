@@ -9,6 +9,18 @@ var logger = function(item) {
 	process.stdout.write(item); // writ
 };
 
+var createDescription = function(def, mne) {
+
+	var str = '<p>';
+	str += def;
+	str += '</p>';
+	str += "<p>";
+	str += '<strong>mnemonics: </strong>';
+	str += mne.join(' | ');
+	str += "<p>";
+	return str;
+};
+
 /* lets create an rss feed */
 var feed = new RSS({
 	title: "GRE words",
@@ -33,15 +45,16 @@ for (var i = 0; i < data.length; i++) {
 	c = data[i];
 	//console.log(c);
 	var percentage = Math.round((i / data.length * 100)).toString() + '% Complete, records: ' + i.toString();
-	//console.log(percentage, "this is it");
+
+	var desc = createDescription(c.meaning, c.menmonics);
 	logger(percentage);
 
 	feed.item({
 		title: c.word,
-		description: c.menmonics.join(' | '),
+		description: desc,
 		url: 'http://example.com/word/' + c.word, // link to the item
 		//guid: '1123', // optional - defaults to url
-		author: c.meaning, // optional - defaults to feed author property
+
 		date: 'Apr 17, 2013' // any format that js Date can parse.
 	});
 
