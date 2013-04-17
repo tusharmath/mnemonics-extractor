@@ -8,6 +8,7 @@ var _onError = function(e) {
 };
 
 var _writeComplete = function() {
+	console.log("File created");
 	if (_options.callback !== undefined) callback();
 };
 
@@ -30,7 +31,7 @@ var _write = function(jsData) {
 	});
 	_writeTimes++;
 
-	if (_writeTimes >= _options.chuckSize) {
+	if (_writeTimes == _options.chunkSize + 1) {
 		_writeToFile(_buffer);
 	}
 };
