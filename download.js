@@ -9,8 +9,8 @@ var fileWriter = require('./fileWriter');
 
 //Initilizing file appender
 var fileWriterOptions = {
-	path: '/Users/tusharmathur/Desktop/dummy.json',
-	create: true
+	path: '/Users/tusharmathur/Desktop/Output.json',
+	create: false
 };
 var writer = new fileWriter(fileWriterOptions);
 
