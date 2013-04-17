@@ -9,7 +9,7 @@ var fileWriter = require('./fileWriter');
 
 //Initilizing file appender
 var fileWriterOptions = {
-	path: '/Users/tusharmathur/Desktop/Output.json',
+	path: '/Users/tusharmathur/LocalStaticSites/public/json/Output.json',
 	create: false
 };
 var writer = new fileWriter(fileWriterOptions);
