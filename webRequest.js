@@ -38,7 +38,6 @@ var _makeRequest = function(url) {
 
 
 module.exports = function(options) {
-	console.log("got options");
 	_options = options;
 	return {
 		makeRequest: _makeRequest

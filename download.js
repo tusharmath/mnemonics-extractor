@@ -1,34 +1,33 @@
 var webRequest = require('./webRequest');
-var $ = require('jQuery');
+var responseParser = require('./responseParse');
+
+
+
 //http://www.mnemonicdictionary.com/wordlist/GREwordlist?page=787#
 
 
-var createMJS = function(content) {
-	var result = [];
-	console.log(content);
-	var finders = {
-		word: '.row-fluid > h2',
-		meaning: '',
-		synonyms: '',
-		usage: '',
-		mnemonics: ''
-	};
-	var item = {};
-	for (var i in finders) {
+//Initializing parser
 
+var parserKey = {
+	node: '#home-middle-content > .row-fluid',
+	elements: {
+		word: 'h2'
 	}
-
 };
 
+var parser = new responseParser(parserKey);
 
-var options = {
+//Initializing requestBuilder
+
+var requestOptions = {
 	host: 'mnemonicdictionary.com',
 	path: '/wordlist/GREwordlist?page=',
-	callback: createMJS
+	callback: parser.parseContent
 };
 
 
-var req = new webRequest(options);
+var req = new webRequest(requestOptions);
 
-console.log(req);
+
+//Actual usage
 req.makeRequest(1);
