@@ -1,0 +1,8 @@
+{
+	"name": "mnemonics",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"nodeQuery": "x.x.x"
+	}
+}
