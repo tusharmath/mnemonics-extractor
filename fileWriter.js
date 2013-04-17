@@ -6,17 +6,24 @@ var _onError = function(e) {
 };
 
 var _writeToFile = function(data, create) {
-
+	console.log("Writing to file");
 	data = JSON.stringify(data);
-	fs.writeFile(_options.path, data, function(err) {
 
-		if (err) {
+	//file writing should be sync
+	var err;
+	if (create === true) {
+		err = fs.writeFileSync(_options.path, data);
+	} else {
+		err = fs.appendFileSync(_options.path, data);
+	}
 
-			_onError(err);
-		} else {
-			console.log("file was saved!");
-		}
-	});
+	if (err) {
+
+		_onError(err);
+	} else {
+		console.log("File updated");
+	}
+
 
 };
 

@@ -26,7 +26,7 @@ var _makeRequest = function(url) {
 	var data = "";
 
 
-
+	console.log("Downloading:", path);
 	http.get({
 		host: _options.host,
 		port: _options.port,
