@@ -42,6 +42,6 @@ var req = new webRequest(requestOptions);
 
 
 //Actual usage
-for (var i = 0; i < 787; i++) {
+for (var i = 1; i < 787; i++) {
 	req.makeRequest(i);
 }

@@ -2,7 +2,7 @@ var _options = {};
 var fs = require('fs');
 var _writeTimes = 1;
 var _onError = function(e) {
-	console.log("Error:", e);
+	if (e) console.log("Error:", e);
 };
 
 var _writeToFile = function(data) {
@@ -12,14 +12,9 @@ var _writeToFile = function(data) {
 	//file writing should be sync
 	var err;
 	if (_options.create === true) {
-		err = fs.writeFileSync(_options.path, data);
+		fs.writeFile(_options.path, data, _onError);
 	} else {
-		err = fs.appendFileSync(_options.path, data);
-	}
-
-	if (err) {
-
-		_onError(err);
+		fs.appendFile(_options.path, data, _onError);
 	}
 };
 
