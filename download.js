@@ -1,41 +1,34 @@
-var http = require('http');
+var webRequest = require('./webRequest');
 var $ = require('jQuery');
 //http://www.mnemonicdictionary.com/wordlist/GREwordlist?page=787#
 
 
+var createMJS = function(content) {
+	var result = [];
+	console.log(content);
+	var finders = {
+		word: '.row-fluid > h2',
+		meaning: '',
+		synonyms: '',
+		usage: '',
+		mnemonics: ''
+	};
+	var item = {};
+	for (var i in finders) {
 
-var makeRequest = function(page, callback) {
-
-	var path = '/wordlist/GREwordlist?page=' + page.toString();
-	var data = "";
-
-	http.get({
-		host: 'mnemonicdictionary.com',
-		port: 80,
-		path: path
-	}, function(resp) {
-		//console.log(resp);
-
-		resp.setEncoding('utf8');
-		var i = 0;
-
-		resp.on('data', function(chunk) {
-
-			data += chunk;
-
-		});
-
-		resp.on('end', function(chunk) {
-
-			callback($(data));
-
-		});
-	}).on("error", function(e) {
-		console.log("Got error: " + e.message);
-	});
+	}
 
 };
-makeRequest(1, function(data) {
-	console.log(data);
 
-});
+
+var options = {
+	host: 'mnemonicdictionary.com',
+	path: '/wordlist/GREwordlist?page=',
+	callback: createMJS
+};
+
+
+var req = new webRequest(options);
+
+console.log(req);
+req.makeRequest(1);
