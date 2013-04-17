@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"dependencies": {
-		"jquery": "x.x.x"
+		"jquery": "x.x.x",
+		"rss": "x.x.x"
 	}
 }

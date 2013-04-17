@@ -16,11 +16,11 @@ var _writeToFile = function(jsData) {
 
 	var jsonData = JSON.stringify(jsData);
 
-
-
 	if (_options.create === true) {
+		console.log('File is being Created');
 		fs.writeFile(_options.path, jsonData, _writeComplete);
 	} else {
+		console.log('File is being Updated');
 		fs.appendFile(_options.path, jsonData, _writeComplete);
 	}
 };
@@ -36,11 +36,16 @@ var _write = function(jsData) {
 	}
 };
 
+var _read = function(){
+
+};
+
 var _fileWriter = function(options) {
 	_options = options;
 
 	return {
-		write: _write
+		write: _write,
+		read: _read
 
 	};
 };
