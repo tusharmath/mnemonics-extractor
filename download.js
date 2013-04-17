@@ -23,7 +23,7 @@ var parserKey = {
 	elements: {
 		word: 'h2',
 		meaning: 'p',
-		menmonics: ['.row-fluid > .span9'],
+		mnemonics: ['.row-fluid > .span9'],
 		synonyms: ['a']
 	}
 };
