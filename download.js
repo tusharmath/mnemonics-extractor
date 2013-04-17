@@ -1,9 +1,17 @@
 var webRequest = require('./webRequest');
 var responseParser = require('./responseParse');
+var fileWriter = require('./fileWriter');
 
 
 
 //http://www.mnemonicdictionary.com/wordlist/GREwordlist?page=787#
+
+
+//Initilizing file appender
+var fileWriterOptions = {
+	path: '/Users/tusharmathur/Desktop/Output.json'
+};
+var writer = new fileWriter(fileWriterOptions);
 
 
 //Initializing parser
@@ -12,12 +20,12 @@ var parserKey = {
 	node: '#home-middle-content > .row-fluid',
 	elements: {
 		word: 'h2',
-		meaning:'p',
+		meaning: 'p',
 		menmonics: '.row-fluid > .span9'
 	}
 };
 
-var parser = new responseParser(parserKey);
+var parser = new responseParser(parserKey, writer.write);
 
 //Initializing requestBuilder
 

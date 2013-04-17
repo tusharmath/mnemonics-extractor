@@ -1,5 +1,6 @@
 var $ = require('jQuery');
 var _parserKeys = {};
+var _callback;
 
 
 var _findElements = function(node) {
@@ -18,7 +19,7 @@ var _findElements = function(node) {
 		} else {
 			text = $(elements[0]).text().replace(/\s\s\s*/g, '');
 		}
-		data[elementKey] = text;
+		data[k] = text;
 	}
 	return data;
 };
@@ -33,12 +34,15 @@ var _parse = function(content) {
 		elements.push(e);
 	}
 	//TODO: Remove
-	console.log(elements);
+	//console.log(elements);
+
+	_callback(elements);
 };
 
 
-var _responseParse = function(parserKeys) {
+var _responseParse = function(parserKeys, callback) {
 	_parserKeys = parserKeys;
+	_callback = callback;
 	return {
 		parseContent: _parse
 	};
