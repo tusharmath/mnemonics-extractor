@@ -46,7 +46,7 @@ for (var i = 0; i < data.length; i++) {
 	//console.log(c);
 	var percentage = Math.round((i / data.length * 100)).toString() + '% Complete, records: ' + i.toString();
 
-	var desc = createDescription(c.meaning, c.menmonics);
+	var desc = createDescription(c.meaning, c.mnemonics);
 	logger(percentage);
 
 	feed.item({
